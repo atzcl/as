@@ -22,6 +22,8 @@ yarn.lock
 package-lock.json
 *bak
 
+!jdCookie.*bak
+
 # visual studio code
 .history
 *.log
@@ -43,5 +45,5 @@ screenshot
 dist
 dist-ssr
 *.local
-jdCookie.js
 CookieSet.json
+jdCookie.js
