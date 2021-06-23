@@ -3,7 +3,6 @@
 author：yangtingxiao
 github： https://github.com/yangtingxiao
 活动入口：京东APP中各种抽奖活动的汇总
-
 修改自用 By xxx
 更新时间：2021-05-25 8:50
  */
@@ -15,8 +14,8 @@ let cookiesArr = [], cookie = '';
 Object.keys(jdCookieNode).forEach((item) => {
   cookiesArr.push(jdCookieNode[item])
 })
-// if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
-// if (JSON.stringify(process.env).indexOf('GITHUB') > -1) process.exit(0);
+if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+if (JSON.stringify(process.env).indexOf('GITHUB') > -1) process.exit(0);
 
 const appIdArr = ['1EFRRxA','1EFRQwA','1EFRYxQ','1EFRXxg','1EFVRwA','1EFVRxw','1EFRZwA','1EFRZwQ','1EFRYwA','1EFVRxg','1EFVRxQ']
 const homeDataFunPrefixArr = ['interact_template','interact_template','harmony_template','','','','','','','','','','','','','','','interact_template','interact_template']
@@ -27,10 +26,10 @@ main();
 async function main() {
   await help();//先账号内部互助
   await updateShareCodes();
-  if (!$.body) await updateShareCodesCDN();
-  if ($.body) {
-    eval($.body);
-  }
+  // if (!$.body) await updateShareCodesCDN();
+  // if ($.body) {
+  //   eval($.body);
+  // }
   $.http.get({url: `https://purge.jsdelivr.net/gh/yangtingxiao/QuantumultX@master/scripts/jd/jd_lotteryMachine.js`}).then((resp) => {
     if (resp.statusCode === 200) {
       let { body } = resp;

@@ -185,27 +185,6 @@ function requireConfig() {
     // console.log(`jdFruitShareArr账号长度::${jxncShareCodeArr.length}`)
     $.log(`您提供了${jxncShareCodeArr.length}个账号的京喜农场助力码`);
 
-    try {
-      let options = {
-        "url": `https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jxnc.txt`,
-        "headers": {
-          "Accept": "application/json,text/plain, */*",
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Accept-Encoding": "gzip, deflate, br",
-          "Accept-Language": "zh-cn",
-          "Connection": "keep-alive",
-          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_1_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
-        },
-        "timeout": 10000,
-      }
-      $.get(options, (err, resp, data) => { // 初始化内置变量
-        if (!err) {
-          shareCode = data;
-        }
-      });
-    } catch (e) {
-      // 获取内置助力码失败
-    }
     resolve()
   })
 }

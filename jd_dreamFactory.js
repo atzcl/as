@@ -1003,8 +1003,7 @@ async function tuanActivity() {
   }
 }
 async function joinLeaderTuan() {
-  let res = await updateTuanIdsCDN(), res2 = await updateTuanIdsCDN("https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jd_updateFactoryTuanId.json")
-  if (!res) res = await updateTuanIdsCDN('https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jd_updateFactoryTuanId.json');
+  let res = {}, res2 = {}
   $.authorTuanIds = [...(res && res.tuanIds || []),...(res2 && res2.tuanIds || [])]
   if ($.authorTuanIds && $.authorTuanIds.length) {
     for (let tuanId of $.authorTuanIds) {
@@ -1227,44 +1226,6 @@ function tuanAward(activeId, tuanId, isTuanLeader = true) {
   })
 }
 
-function updateTuanIdsCDN(url = 'https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jd_updateFactoryTuanId.json') {
-  return new Promise(async resolve => {
-    const options = {
-      url: `${url}?${new Date()}`, "timeout": 10000, headers: {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-      }
-    };
-    if ($.isNode() && process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
-      const tunnel = require("tunnel");
-      const agent = {
-        https: tunnel.httpsOverHttp({
-          proxy: {
-            host: process.env.TG_PROXY_HOST,
-            port: process.env.TG_PROXY_PORT * 1
-          }
-        })
-      }
-      Object.assign(options, { agent })
-    }
-    $.get(options, (err, resp, data) => {
-      try {
-        if (err) {
-          // console.log(`${JSON.stringify(err)}`)
-        } else {
-          if (safeGet(data)) {
-            $.tuanConfigs = data = JSON.parse(data);
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
-    })
-    await $.wait(20000)
-    resolve();
-  })
-}
 
 //商品可兑换时的通知
 async function exchangeProNotify() {
@@ -1375,13 +1336,11 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN();
     if ($.tuanConfigs && $.tuanConfigs['tuanActiveId']) {
       tuanActiveId = $.tuanConfigs['tuanActiveId'];
       console.log(`拼团活动ID: 获取成功 ${tuanActiveId}`)
     } else {
       if (!$.tuanConfigs) {
-        await updateTuanIdsCDN('https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jd_updateFactoryTuanId.json');
         if ($.tuanConfigs && $.tuanConfigs['tuanActiveId']) {
           tuanActiveId = $.tuanConfigs['tuanActiveId'];
           console.log(`拼团活动ID: 获取成功 ${tuanActiveId}`)
