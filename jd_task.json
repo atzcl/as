@@ -745,16 +745,6 @@
       }
     },
     {
-      "name": "星系牧场",
-      "type": "cron",
-      "time": "30 7 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://github.com/panghu999/jd_scripts/main/jd_qqxing.js"
-      }
-    },
-    {
       "name": "京喜签到",
       "type": "cron",
       "time": "5 0 * * *",

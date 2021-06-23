@@ -4,17 +4,21 @@
 cron 5 8,13,19 * * * jd_cfd.js
 更新时间：2021-6-3
 活动入口：京喜APP-我的-京喜财富岛
+
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #京喜财富岛
 5 8,13,19 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cfd.js, tag=京喜财富岛, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
+
 ================Loon==============
 [Script]
 cron "5 8,13,19 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cfd.js,tag=京喜财富岛
+
 ===============Surge=================
 京喜财富岛 = type=cron,cronexp="5 8,13,19 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cfd.js
+
 ============小火箭=========
 京喜财富岛 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_cfd.js, cronexpr="5 8,13,19 * * *", timeout=3600, enable=true
  */
@@ -54,9 +58,7 @@ $.appId = 10009;
   }
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
   await requestAlgo();
-  let res = {}, res2 = await getAuthorShareCode("https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/cfd.json")
-  if (new Date().getHours() <= 3) res = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/cfd.json');
-  if (!res2) res2 = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/cfd.json')
+  let res = {}, res2 = {}
   $.strMyShareIds = [...(res && res.shareId || []),...(res2 && res2.shareId || [])]
   $.strGroupIds = [...(res && res.strGroupIds || []),...(res2 && res2.strGroupIds || [])]
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -1145,33 +1147,6 @@ function showMsg() {
   });
 }
 
-function readShareCode() {
-  console.log(`开始`)
-  return new Promise(async resolve => {
-    $.get({
-      url: `https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jxcfd.json`,
-      'timeout': 10000
-    }, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            console.log(`取5个码放到您固定的互助码后面(不影响已有固定互助)`)
-            data = JSON.parse(data);
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
-    })
-    await $.wait(10000);
-    resolve()
-  })
-}
 //格式化助力码
 function shareCodesFormat() {
   return new Promise(async resolve => {
@@ -1179,16 +1154,7 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
-      console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-      // const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-      $.newShareCodes = [...$.strMyShareIds];
     }
-     const readShareCodeRes = await readShareCode();
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
-    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
 }

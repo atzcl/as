@@ -47,7 +47,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   }
   await getAuthorShareCode('http://cdn.annnibb.me/jd_zz.json');
   await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/asd920/updateTeam/main/shareCodes/jd_zz.json');
-  await getRandomCode();
+
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -722,26 +722,6 @@ function getAuthorShareCode(url) {
       }
     })
   })
-}
-async function getRandomCode() {
-  await $.http.get({url: `https://ghproxy.com/https://raw.githubusercontent.com/zero205/updateTeam/master/shareCodes/jd_zz.json`, timeout: 10000}).then(async (resp) => {
-    if (resp.statusCode === 200) {
-      try {
-        let { body } = resp;
-        body = JSON.parse(body);
-        if (body && body['code'] === 200) {
-          console.log(`随机取【赚京豆-瓜分京豆】${randomCount}个邀请码成功\n`);
-          $.body = body['data'];
-          $.body1 = [];
-          $.body.map(item => {
-            $.body1.push(JSON.parse(item));
-          })
-        }
-      } catch (e) {
-        console.log(`随机取【赚京豆-瓜分京豆】${randomCount}个邀请码异常:${e}`);
-      }
-    }
-  }).catch((e) => console.log(`随机取【赚京豆-瓜分京豆】${randomCount}个邀请码异常:${e}`));
 }
 //======================赚京豆开团===========END=====
 function taskUrl(function_id, body = {}) {
