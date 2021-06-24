@@ -1,7 +1,15 @@
+const fs = require('fs')
+const path = require('path')
 const cron = require('node-cron')
+
 const { Env } = require('./utils/Env')
 
 global.Env = Env
+
+const userEnvPath = path.join(__dirname, 'aEnv.js')
+if (fs.existsSync(userEnvPath)) {
+  require(userEnvPath)
+}
 
 try {
   cron.schedule(process.env.CRON_TIME, async function () {

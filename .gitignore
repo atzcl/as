@@ -47,3 +47,4 @@ dist-ssr
 *.local
 CookieSet.json
 jdCookie.js
+aEnv.js

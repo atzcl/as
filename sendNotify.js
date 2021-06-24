@@ -137,8 +137,6 @@ if (process.env.PUSH_PLUS_USER) {
 //==========================云端环境变量的判断与接收=========================
 
 async function sendNotify(text, desp, params = {}) {
-  //提供6种通知
-  desp += `\n【通知】：\n618动物联萌将取消18点前自动释放技能\n请自行计算伤害，手动使用技能\n\n本仓库备份地址：\nhttps://gitee.com/asd920/Auto-jd`
   await Promise.all([
     serverNotify(text, desp), //微信server酱
     pushPlusNotify(text, desp), //pushplus(推送加)
