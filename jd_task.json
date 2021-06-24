@@ -495,16 +495,6 @@
       }
     },
     {
-      "name": "蒙牛有机牧场",
-      "type": "cron",
-      "time": "1 7-23/2 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_monk_pasture.js"
-      }
-    },
-    {
       "name": "女装盲盒",
       "type": "cron",
       "time": "20 9,23 * * *",
