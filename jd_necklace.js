@@ -1,20 +1,17 @@
 /*
 点点券，可以兑换无门槛红包（1元，5元，10元，100元，部分红包需抢购）
-Last Modified time: 2021-05-28 17:27:14
+Last Modified time: 2021-06-21
 活动入口：京东APP-领券中心/券后9.9-领点点券 [活动地址](https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html)
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ===============Quantumultx===============
 [task_local]
 #点点券
 10 0,20 * * * jd_necklace.js, tag=点点券, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
-
 ================Loon==============
 [Script]
 cron "10 0,20 * * *" script-path=jd_necklace.js,tag=点点券
-
 ===============Surge=================
 点点券 = type=cron,cronexp="10 0,20 * * *",wake-system=1,timeout=3600,script-path=jd_necklace.js
-
 ============小火箭=========
 点点券 = type=cron,script-path=jd_necklace.js, cronexpr="10 0,20 * * *", timeout=3600, enable=true
  */
@@ -30,7 +27,7 @@ let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 
 let cookiesArr = [], cookie = '';
 
 const https = require('https');
-const fs = require('fs').promises;
+const fs = require('fs/promises');
 const { R_OK } = require('fs').constants;
 const vm = require('vm');
 const UA = require('./USER_AGENTS.js').USER_AGENT;
@@ -38,7 +35,7 @@ const UA = require('./USER_AGENTS.js').USER_AGENT;
 const URL = 'https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html';
 const REG_SCRIPT = /<script src="([^><]+\/(main\.\w+\.js))\?t=\d+">/gm;
 const REG_ENTRY = /^(.*?\.push\(\[)(\d+,\d+)/;
-const REG_PIN = /pt_pin=(\w+?);/m;
+const REG_PIN = /pt_pin=([^; ]+)(?=;?)/;
 const KEYWORD_MODULE = 'get_risk_result:';
 const DATA = {appid:'50082',sceneid:'DDhomePageh5'};
 let smashUtils;
@@ -230,7 +227,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   }
 })()
     .catch((e) => {
-      $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+      $.log('', ` ${$.name}, 失败! 原因: ${e}!`, '')
     })
     .finally(() => {
       $.done();
@@ -258,7 +255,7 @@ function showMsg() {
     // if ($.isNode() && $.totalScore >= 20000 && nowTimes.getHours() >= 20) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `京东账号${$.index} ${$.nickName}\n当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击链接即可去兑换(注：此红包具有时效性)\n↓↓↓ \n\n ${openUrl} \n\n ↑↑↑`, { url: openUrl })
     if ($.isNode() && nowTimes.getHours() >= 20 && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
       allMessage += `京东账号${$.index} ${$.nickName}\n当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n(京东APP->领券->左上角点点券.注：此红包具有时效性)${$.index !== cookiesArr.length ? '\n\n' : `\n↓↓↓ \n\n "https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html" \n\n ↑↑↑`}`
-      allMessage += `红包将在6.21日清空，请及时兑换`
+
     }
     resolve()
   })
@@ -310,7 +307,7 @@ async function reportTask(item = {}) {
     await necklace_getTask(item.id);
     $.taskItems = $.taskItems.filter(value => !!value && value['status'] === 0);
     for (let vo of $.taskItems) {
-      console.log(`浏览精选活动 【${vo['title']}】`);
+      console.log(`浏览精选活动【${vo['title']}】`);
       await necklace_startTask(item.id, 'necklace_reportTask', vo['id']);
     }
   }
@@ -685,4 +682,4 @@ function jsonParse(str) {
       return [];
     }
   }
-}
+} 
