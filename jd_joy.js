@@ -1,5 +1,5 @@
 /**
- 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+ 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.jsJDHelloWorld, 3 days ago: • 宠汪汪二代目 1%
  IOS用户支持京东双账号,NodeJs用户支持N个京东账号
  更新时间：2021-06-21
  活动入口：京东APP我的-宠汪汪
@@ -217,7 +217,7 @@ const DATA = {
   product: 'embed',
   lang: 'zh_CN',
 }
-const SERVER = 'iv.jd.com'
+const SERVER = '61.49.99.122'
 
 class JDJRValidator {
   constructor() {
