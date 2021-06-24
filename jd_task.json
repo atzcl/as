@@ -397,7 +397,7 @@
     {
       "name": "京东极速版红包",
       "type": "cron",
-      "time": "1 0 * * *",
+      "time": "1 0,23 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -407,7 +407,7 @@
     {
       "name": "京东极速版",
       "type": "cron",
-      "time": "2 7 * * *",
+      "time": "2 7,23 * * *",
       "running": true,
       "job": {
         "type": "runjs",
