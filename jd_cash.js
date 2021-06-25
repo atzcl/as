@@ -27,7 +27,14 @@ let cookiesArr = [],
   message
 const randomCount = $.isNode() ? 20 : 5
 
-let newShareCodes = process.env.cashinviteCode ? [{ inviteCode: process.env.cashinviteCode }] : [] //这里修改你的邀请码
+let newShareCodes = process.env.cashinviteCode
+  ? [
+      {
+        inviteCode: process.env.cashinviteCode,
+        shareDate: `"${process.env.cashinviteShareDate}"`,
+      },
+    ]
+  : [] //这里修改你的邀请码
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -243,7 +250,6 @@ function helpFriend(helpInfo) {
       taskUrl('cash_mob_assist', {
         ...helpInfo,
         source: 3,
-        shareDate: 'IRs1bey0ZPg',
       }),
       (err, resp, data) => {
         try {
