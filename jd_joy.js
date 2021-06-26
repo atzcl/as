@@ -1,11 +1,13 @@
 /**
- 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.jsJDHelloWorld, 3 days ago: • 宠汪汪二代目 1%
+ 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
  IOS用户支持京东双账号,NodeJs用户支持N个京东账号
  更新时间：2021-06-21
  活动入口：京东APP我的-宠汪汪
  完成度 1%，要用的手动执行，先不加cron了
  默认80，10、20、40、80可选
  export feedNum = 80
+ 默认双人跑
+ export JD_JOY_teamLevel = 2
  */
 
 const $ = new Env('宠汪汪二代目')
@@ -602,6 +604,7 @@ $.post = injectToRequest($.post.bind($))
       message = ''
       subTitle = ''
 
+      await run()
       await feed()
 
       let tasks = await taskList()
@@ -899,17 +902,23 @@ function award(taskType) {
   })
 }
 
-function sign() {
+function run() {
+  let level = process.env.JD_JOY_teamLevel ? process.env.JD_JOY_teamLevel : 2
   return new Promise((resolve) => {
     $.get(
       {
-        url: `https://jdjoy.jd.com/common/pet/sign?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&taskType=SignEveryDay`,
+        url: `https://jdjoy.jd.com/common/pet/combat/match?teamLevel=${level}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
         headers: {
           Host: 'jdjoy.jd.com',
-          accept: '*/*',
-          'content-type': 'application/json',
+          'sec-fetch-mode': 'cors',
           origin: 'https://h5.m.jd.com',
-          'accept-language': 'zh-cn',
+          'content-type': 'application/json',
+          accept: '*/*',
+          'x-requested-with': 'com.jingdong.app.mall',
+          'sec-fetch-site': 'same-site',
+          referer:
+            'https://h5.m.jd.com/babelDiy/Zeus/2wuqXrZrhygTQzYA7VufBEpj4amH/index.html',
+          'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
           'User-Agent': $.isNode()
             ? process.env.JD_USER_AGENT
               ? process.env.JD_USER_AGENT
@@ -917,17 +926,20 @@ function sign() {
             : $.getdata('JDUA')
             ? $.getdata('JDUA')
             : 'jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
-          referer: 'https://h5.m.jd.com/',
-          'Content-Type': 'application/json; charset=UTF-8',
           cookie: cookie,
         },
       },
-      (err, resp, data) => {
+      async (err, resp, data) => {
         try {
+          console.log('赛跑', data)
           data = JSON.parse(data)
-          data.success
-            ? console.log(`\t签到成功！`)
-            : console.log('\t签到失败！', JSON.stringify(data))
+          if (data.data.petRaceResult === 'participate') {
+            console.log('匹配成功！')
+          } else {
+            console.log('重新匹配...')
+            await $.wait(1500)
+            await run()
+          }
         } catch (e) {
           $.logErr(e)
         } finally {
