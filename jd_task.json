@@ -743,6 +743,16 @@
         "type": "runjs",
         "target": "https://github.com/panghu999/jd_scripts/main/jd_jxsign.js"
       }
+    },
+    {
+      "name": "柠檬众筹好物上新",
+      "type": "cron",
+      "time": "10 12,14 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://github.com/panghu999/jd_scripts/main/jd_hwsx.js"
+      }
     }
   ]
 }
