@@ -725,6 +725,16 @@
       }
     },
     {
+      "name": "零食街",
+      "type": "cron",
+      "time": "0 11 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_lsj.js"
+      }
+    },
+    {
       "name": "柠檬众筹好物上新",
       "type": "cron",
       "time": "10 12,14 * * *",
