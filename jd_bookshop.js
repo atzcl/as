@@ -6,14 +6,14 @@
 ============Quantumultx===============
 [task_local]
 #口袋书店
-1 8,12,18 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bookshop.js, tag=口袋书店, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+1 8,12,18 * * * jd_bookshop.js, tag=口袋书店, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ================Loon==============
 [Script]
-cron "1 8,12,18 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bookshop.js,tag=口袋书店
+cron "1 8,12,18 * * *" script-path=jd_bookshop.js,tag=口袋书店
 ===============Surge=================
-口袋书店 = type=cron,cronexp="1 8,12,18 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bookshop.js
+口袋书店 = type=cron,cronexp="1 8,12,18 * * *",wake-system=1,timeout=3600,script-path=jd_bookshop.js
 ============小火箭=========
-口袋书店 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bookshop.js, cronexpr="1 8,12,18* * *", timeout=3600, enable=true
+口袋书店 = type=cron,script-path=jd_bookshop.js, cronexpr="1 8,12,18 * * *", timeout=3600, enable=true
  */
 const $ = new Env('口袋书店');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -21,12 +21,12 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-const ACT_ID = 'dz2010100034444201', shareUuid = '28a699ac78d74aa3b31f7103597f8927'
+const ACT_ID = 'dz2010100034444201', shareUuid = ''
 let ADD_CART = false
 ADD_CART = $.isNode() ? (process.env.PURCHASE_SHOPS ? process.env.PURCHASE_SHOPS : ADD_CART) : ($.getdata("ADD_CART") ? $.getdata("ADD_CART") : ADD_CART);
 // 加入购物车开关，与东东小窝共享
 
-let inviteCodes = []
+let inviteCodes = ['']
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -97,7 +97,7 @@ async function jdBeauty() {
       $.gold -= 800
     }
   }
-  if($.userInfo.storeGold) await chargeGold()
+  if ($.userInfo.storeGold) await chargeGold()
   await helpFriends()
   await showMsg();
 }
@@ -165,11 +165,11 @@ function getActCk() {
         if (err) {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-          if($.isNode())
+          if ($.isNode())
             for (let ck of resp['headers']['set-cookie']) {
               cookie = `${cookie}; ${ck.split(";")[0]};`
             }
-          else{
+          else {
             for (let ck of resp['headers']['Set-Cookie'].split(',')) {
               cookie = `${cookie}; ${ck.split(";")[0]};`
             }
@@ -280,7 +280,7 @@ function getActContent(info = false, shareUuid = '') {
               }
               $.actorUuid = $.userInfo.actorUuid
               // if(!info) console.log(`您的好友助力码为${$.actorUuid}`)
-              if(!info) console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.actorUuid}\n`);
+              if (!info) console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.actorUuid}\n`);
               $.gold = $.userInfo.bookStore.hasStoreGold
               if (!info) {
                 const tasks = data.data.settingVo
@@ -298,7 +298,7 @@ function getActContent(info = false, shareUuid = '') {
                         await $.wait(500)
                       }
                     }
-                  } else if(task.title === '每日签到'){
+                  } else if (task.title === '每日签到') {
                     const hour = new Date().getUTCHours() + 8
                     if (8 <= hour && hour < 10 || 12 <= hour && hour < 14 || 18 <= hour && hour < 20) {
                       console.log(`去做${task.title}任务`)
@@ -327,6 +327,7 @@ function getActContent(info = false, shareUuid = '') {
     })
   })
 }
+
 function doHelpList(taskType, value) {
   let body = `activityId=${ACT_ID}&actorUuid=${$.actorUuid}&num=0&sortStatus=1`
   return new Promise(resolve => {
@@ -349,6 +350,7 @@ function doHelpList(taskType, value) {
   })
 
 }
+
 // 做任务
 function doTask(taskType, value) {
   let body = `activityId=${ACT_ID}&pin=${encodeURIComponent($.token)}&actorUuid=${$.actorUuid}&taskType=${taskType}&taskValue=${value}`
@@ -657,16 +659,20 @@ function shareCodesFormat() {
     $.newShareCodes = [];
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else if (inviteCodes.length) {
+    } else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
-
+    const readShareCodeRes = null //await readShareCode();
+    if (readShareCodeRes && readShareCodeRes.code === 200) {
+      $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
+    }
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
 }
+
 function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);

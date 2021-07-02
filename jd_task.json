@@ -605,16 +605,6 @@
       }
     },
     {
-      "name": "新潮品牌狂欢",
-      "type": "cron",
-      "time": "13 10 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_mcxhd.js"
-      }
-    },
-    {
       "name": "星店长",
       "type": "cron",
       "time": "26 7,21 * * *",
@@ -632,16 +622,6 @@
       "job": {
         "type": "runjs",
         "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_mohe.js"
-      }
-    },
-    {
-      "name": "省钱大赢家之翻翻乐",
-      "type": "cron",
-      "time": "0/20 0-23 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_big_winner.js"
       }
     },
     {

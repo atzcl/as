@@ -90,6 +90,7 @@ function sign() {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
+            console.log(data)
             if(data.retCode ===0){
               if(data.data.signStatus===0){
                 console.log(`签到成功，获得${data.data.pingoujin}金币，已签到${data.data.signDays}天`)
