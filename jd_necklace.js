@@ -217,7 +217,7 @@ async function main() {
 
     for (let t of result.taskConfigVos) {
       // console.log(t.id, t.taskName, t.taskType, t.taskStage)
-      if (t.taskStage === 0 || t.taskStage === 1) {
+      // if (t.taskStage === 0 || t.taskStage === 1) {
         if (t.taskType === 2) {
           console.log(t.taskType, t.id, t.taskName, t.taskStage)
           if (t.taskStage === 0) {
@@ -249,7 +249,7 @@ async function main() {
           console.log('其他任务')
           console.log('我不会')
         }
-      }
+      // }
     }
 
     result = (await api('necklace_homePage', {}))['data']['result'];
