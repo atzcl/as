@@ -695,16 +695,6 @@
       }
     },
     {
-      "name": "超级无线组队分京豆",
-      "type": "cron",
-      "time": "15 6 * * 2",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_z_shop_captain.js"
-      }
-    },
-    {
       "name": "京喜签到",
       "type": "cron",
       "time": "5 0 * * *",
