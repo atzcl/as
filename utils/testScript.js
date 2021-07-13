@@ -3,6 +3,7 @@ const fs = require('fs')
 const { Env } = require('./Env')
 
 global.Env = Env
+global.urls = new Set([]);
 
 const args = process.argv.slice(2)
 
@@ -14,3 +15,12 @@ if (fs.existsSync(userEnvPath)) {
 }
 
 require(scriptPath)
+
+// setTimeout(() => {
+//   const newUrls = [];
+//   for (const url of global.urls) {
+//     newUrls.push(url);
+//   }
+
+//   fs.writeFileSync(path.join(__dirname, '..', 'url.txt'), newUrls.join('\n'), 'utf8')
+// }, 1000 * 60 * 60)
