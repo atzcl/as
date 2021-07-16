@@ -10,7 +10,8 @@ const canRequest = (url) => {
     ].includes(host) &&
     !/\.jd\.com$/.test(host) &&
     !/\.jingxi\.com/.test(host) &&
-    !/\.isvjcloud\.com/.test(host)
+    !/\.isvjcloud\.com/.test(host) &&
+    !['https://cdn.jsdelivr.net/gh/NobyDa/Script@master/JD-DailyBonus/JD_DailyBonus.js', 'https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js'].includes(url)
   ) {
     console.log(host, url)
     throw new Error(`该请求 url 不合法: ${url}`)
