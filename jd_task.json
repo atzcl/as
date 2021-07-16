@@ -3,7 +3,7 @@
   "desc": "elecV2P 京东定时任务订阅。该订阅仅可用于 elecV2P, 与其他软件并不兼容。相关说明参考: https://github.com/elecV2/elecV2P-dei/tree/master/docs/06-task.md",
   "author": "asd920",
   "date": "2021-05-15 16:16:30",
-  "surl": "https://gitee.com/asd920/Auto-jd",
+  "surl": "",
   "list": [
     {
       "name": "京豆变动通知",
@@ -12,7 +12,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_bean_change.js"
+        "target": "/raw/main/jd_bean_change.js"
       }
     },
     {
@@ -22,7 +22,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_bean_home.js"
+        "target": "/raw/main/jd_bean_home.js"
       }
     },
     {
@@ -42,7 +42,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_blueCoin.js"
+        "target": "/raw/main/jd_blueCoin.js"
       }
     },
     {
@@ -52,7 +52,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_bookshop.js"
+        "target": "/raw/main/jd_bookshop.js"
       }
     },
     {
@@ -62,7 +62,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_car.js"
+        "target": "/raw/main/jd_car.js"
       }
     },
     {
@@ -72,7 +72,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_car_exchange.js"
+        "target": "/raw/main/jd_car_exchange.js"
       }
     },
     {
@@ -82,7 +82,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_cash.js"
+        "target": "/raw/main/jd_cash.js"
       }
     },
     {
@@ -92,7 +92,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_cash_exchange.js"
+        "target": "/raw/main/jd_cash_exchange.js"
       }
     },
     {
@@ -102,7 +102,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_cfd.js"
+        "target": "/raw/main/jd_cfd.js"
       }
     },
     {
@@ -112,7 +112,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_cfdtx.js"
+        "target": "/raw/main/jd_cfdtx.js"
       }
     },
     {
@@ -122,7 +122,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_club_lottery.js"
+        "target": "/raw/main/jd_club_lottery.js"
       }
     },
     {
@@ -132,7 +132,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_crazy_joy.js"
+        "target": "/raw/main/jd_crazy_joy.js"
       }
     },
     {
@@ -142,7 +142,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_daily_egg.js"
+        "target": "/raw/main/jd_daily_egg.js"
       }
     },
     {
@@ -152,7 +152,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_dreamFactory.js"
+        "target": "/raw/main/jd_dreamFactory.js"
       }
     },
     {
@@ -162,7 +162,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_fruit.js"
+        "target": "/raw/main/jd_fruit.js"
       }
     },
     {
@@ -172,7 +172,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_get_share_code.js"
+        "target": "/raw/main/jd_get_share_code.js"
       }
     },
     {
@@ -182,7 +182,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jdfactory.js"
+        "target": "/raw/main/jd_jdfactory.js"
       }
     },
     {
@@ -192,7 +192,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jdzz.js"
+        "target": "/raw/main/jd_jdzz.js"
       }
     },
     {
@@ -202,7 +202,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jin_tie.js"
+        "target": "/raw/main/jd_jin_tie.js"
       }
     },
     {
@@ -212,7 +212,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_joy.js"
+        "target": "/raw/main/jd_joy.js"
       }
     },
     {
@@ -222,7 +222,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_joy_feedPets.js"
+        "target": "/raw/main/jd_joy_feedPets.js"
       }
     },
     {
@@ -232,7 +232,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_joy_reward.js"
+        "target": "/raw/main/jd_joy_reward.js"
       }
     },
     {
@@ -242,7 +242,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jxnc.js"
+        "target": "/raw/main/jd_jxnc.js"
       }
     },
     {
@@ -252,7 +252,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_kd.js"
+        "target": "/raw/main/jd_kd.js"
       }
     },
     {
@@ -262,7 +262,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_live.js"
+        "target": "/raw/main/jd_live.js"
       }
     },
     {
@@ -271,7 +271,7 @@
       "time": "0,30,31 20-23/1 18 * *",
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_live_redrain.js"
+        "target": "/raw/main/jd_live_redrain.js"
       }
     },
     {
@@ -281,7 +281,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_lotteryMachine.js"
+        "target": "/raw/main/jd_lotteryMachine.js"
       }
     },
     {
@@ -291,7 +291,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_moneyTree.js"
+        "target": "/raw/main/jd_moneyTree.js"
       }
     },
     {
@@ -301,7 +301,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_ms.js"
+        "target": "/raw/main/jd_ms.js"
       }
     },
     {
@@ -311,7 +311,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_necklace.js"
+        "target": "/raw/main/jd_necklace.js"
       }
     },
     {
@@ -321,7 +321,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_pet.js"
+        "target": "/raw/main/jd_pet.js"
       }
     },
     {
@@ -331,7 +331,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_pigPet.js"
+        "target": "/raw/main/jd_pigPet.js"
       }
     },
     {
@@ -341,7 +341,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_plantBean.js"
+        "target": "/raw/main/jd_plantBean.js"
       }
     },
     {
@@ -351,7 +351,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_rankingList.js"
+        "target": "/raw/main/jd_rankingList.js"
       }
     },
     {
@@ -361,7 +361,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_redPacket.js"
+        "target": "/raw/main/jd_redPacket.js"
       }
     },
     {
@@ -371,7 +371,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_sgmh.js"
+        "target": "/raw/main/jd_sgmh.js"
       }
     },
     {
@@ -381,7 +381,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_shop.js"
+        "target": "/raw/main/jd_shop.js"
       }
     },
     {
@@ -391,7 +391,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_small_home.js"
+        "target": "/raw/main/jd_small_home.js"
       }
     },
     {
@@ -401,7 +401,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_speed_redpocke.js"
+        "target": "/raw/main/jd_speed_redpocke.js"
       }
     },
     {
@@ -411,7 +411,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_speed_sign.js"
+        "target": "/raw/main/jd_speed_sign.js"
       }
     },
     {
@@ -421,7 +421,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_superMarket.js"
+        "target": "/raw/main/jd_superMarket.js"
       }
     },
     {
@@ -431,7 +431,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_syj.js"
+        "target": "/raw/main/jd_syj.js"
       }
     },
     {
@@ -441,7 +441,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_unsubscribe.js"
+        "target": "/raw/main/jd_unsubscribe.js"
       }
     },
     {
@@ -451,7 +451,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_z_fanslove.js"
+        "target": "/raw/main/jd_z_fanslove.js"
       }
     },
     {
@@ -461,7 +461,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_z_health_community.js"
+        "target": "/raw/main/jd_z_health_community.js"
       }
     },
     {
@@ -471,7 +471,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_z_health_energy.js"
+        "target": "/raw/main/jd_z_health_energy.js"
       }
     },
     {
@@ -481,7 +481,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jxd.js"
+        "target": "/raw/main/jd_jxd.js"
       }
     },
     {
@@ -491,7 +491,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_monk_inter_shop_sign.js"
+        "target": "/raw/main/jd_monk_inter_shop_sign.js"
       }
     },
     {
@@ -501,7 +501,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_nzmh.js"
+        "target": "/raw/main/jd_nzmh.js"
       }
     },
     {
@@ -511,7 +511,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_monk_shop_follow_sku.js"
+        "target": "/raw/main/jd_monk_shop_follow_sku.js"
       }
     },
     {
@@ -521,7 +521,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_monk_shop_lottery.js"
+        "target": "/raw/main/jd_monk_shop_lottery.js"
       }
     },
     {
@@ -541,7 +541,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_super_redrain.js"
+        "target": "/raw/main/jd_super_redrain.js"
       }
     },
     {
@@ -551,7 +551,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_half_redrain.js"
+        "target": "/raw/main/jd_half_redrain.js"
       }
     },
     {
@@ -561,7 +561,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_market_lottery.js"
+        "target": "/raw/main/jd_market_lottery.js"
       }
     },
     {
@@ -571,7 +571,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jump.js"
+        "target": "/raw/main/jd_jump.js"
       }
     },
     {
@@ -581,7 +581,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_gold_creator.js"
+        "target": "/raw/main/jd_gold_creator.js"
       }
     },
     {
@@ -591,7 +591,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jxlhb.js"
+        "target": "/raw/main/jd_jxlhb.js"
       }
     },
     {
@@ -601,7 +601,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_star_shop.js"
+        "target": "/raw/main/jd_star_shop.js"
       }
     },
     {
@@ -611,7 +611,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_mohe.js"
+        "target": "/raw/main/jd_mohe.js"
       }
     },
     {
@@ -621,7 +621,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_ddo_pk.js"
+        "target": "/raw/main/jd_ddo_pk.js"
       }
     },
     {
@@ -631,7 +631,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_djjl.js"
+        "target": "/raw/main/jd_djjl.js"
       }
     },
     {
@@ -641,7 +641,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_kj.js"
+        "target": "/raw/main/jd_kj.js"
       }
     },
     {
@@ -651,7 +651,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_tyt.js"
+        "target": "/raw/main/jd_tyt.js"
       }
     },
     {
@@ -661,7 +661,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_wxj.js"
+        "target": "/raw/main/jd_wxj.js"
       }
     },
     {
@@ -671,7 +671,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_jxmc.js"
+        "target": "/raw/main/jd_jxmc.js"
       }
     },
     {
@@ -681,7 +681,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_zjb.js"
+        "target": "/raw/main/jd_zjb.js"
       }
     },
     {
@@ -691,7 +691,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_try.js"
+        "target": "/raw/main/jd_try.js"
       }
     },
     {
@@ -701,7 +701,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://github.com/panghu999/jd_scripts/main/jd_jxsign.js"
+        "target": "main/jd_jxsign.js"
       }
     },
     {
@@ -711,7 +711,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://gitee.com/asd920/Auto-jd/raw/main/jd_lsj.js"
+        "target": "/raw/main/jd_lsj.js"
       }
     },
     {
@@ -721,7 +721,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://github.com/panghu999/jd_scripts/main/jd_hwsx.js"
+        "target": "main/jd_hwsx.js"
       }
     },
     {
@@ -731,7 +731,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://github.com/panghu999/jd_scripts/main/jd_summer_movement.js"
+        "target": "main/jd_summer_movement.js"
       }
     },
     {
@@ -741,7 +741,27 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "https://github.com/Tsukasa007/my_script/blob/master/jd_joypark_joy.js"
+        "target": "blob/master/jd_joypark_joy.js"
+      }
+    },
+    {
+      "name": "省钱大赢家之翻翻乐",
+      "type": "cron",
+      "time": "11 * * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_big_winner.js"
+      }
+    },
+    {
+      "name": "京喜财富岛",
+      "type": "cron",
+      "time": "1 * * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_cfd.ts"
       }
     }
   ]

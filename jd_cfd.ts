@@ -3,8 +3,8 @@
  * 包含雇佣导游，建议每小时1次
  *
  * 此版本暂定默认帮助HelloWorld，帮助助力池
- * export CFD_HELP_HW = true    // 帮助HelloWorld
- * export CFD_HELP_POOL = true  // 帮助助力池
+ * export HELP_HW = true    // 帮助HelloWorld
+ * export HELP_POOL = true  // 帮助助力池
  *
  * 使用jd_env_copy.js同步js环境变量到ts
  * 使用jd_ts_test.ts测试环境变量
@@ -12,31 +12,43 @@
 
 import { format } from 'date-fns'
 import axios from 'axios'
-import USER_AGENT from './TS_USER_AGENTS'
+import USER_AGENT, {
+  TotalBean,
+  getBeanShareCode,
+  getFarmShareCode,
+} from './TS_USER_AGENTS'
 import { Md5 } from 'ts-md5'
 
 const CryptoJS = require('crypto-js')
-
+const notify = require('./sendNotify')
 let appId: number = 10028,
   fingerprint: string | number,
-  token: string,
+  token: string = '',
   enCryptMethodJD: any
 let cookie: string = '',
-  cookiesArr: Array<string> = [],
+  cookiesArr: string[] = [],
   res: any = '',
-  shareCodes: string[] = []
+  shareCodes: string[] = [
+    '54F20ECB6680C7BD4657EA106D62D508CD79A71C733CF3362778B2086817052E',
+    '5BE4E073D88BF3755AE0E7321538F34983462CC13A763310595646ED5BCAA087',
+  ]
 
-let UserName: string, index: number, isLogin: boolean, nickName: string
+let UserName: string, index: number
 !(async () => {
   await requestAlgo()
   await requireConfig()
-
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i]
     UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)![1])
     index = i + 1
-    isLogin = true
-    nickName = ''
+    let { isLogin, nickName }: any = await TotalBean(cookie)
+    if (!isLogin) {
+      notify.sendNotify(
+        __filename.split('/').pop(),
+        `cookie已失效\n京东账号${index}：${nickName || UserName}`
+      )
+      continue
+    }
     console.log(`\n开始【京东账号${index}】${nickName || UserName}\n`)
 
     try {
@@ -45,26 +57,92 @@ let UserName: string, index: number, isLogin: boolean, nickName: string
       console.log(e)
     }
 
-    let dwUserId: number = 1
-    // 助力奖励
-    while (1) {
-      res = await api(
+    // 签到 助力奖励
+    res = await api(
+      'story/GetTakeAggrPage',
+      '_cfd_t,bizCode,dwEnv,ptag,source,strZone'
+    )
+    let employee: any = res.Data.Employee.EmployeeList.filter((e: any) => {
+      return e.dwStatus === 0
+    })
+    for (let emp of employee) {
+      let empRes: any = await api(
         'story/helpdraw',
         '_cfd_t,bizCode,dwEnv,dwUserId,ptag,source,strZone',
-        { dwUserId: dwUserId }
+        { dwUserId: emp.dwId }
       )
-      console.log('助力奖励:', res)
-      dwUserId++
-      if (res.iRet === 0) {
-        console.log('助力奖励领取成功', res.Data.ddwCoin)
-      } else if (res.iRet === 1000) {
-        break
-      } else if (res.iRet === 2203) {
-      } else {
-        console.log('助力奖励领取其他错误:', res)
-        break
+      if (empRes.iRet === 0)
+        console.log('助力奖励领取成功：', empRes.Data.ddwCoin)
+      await wait(1000)
+    }
+    if (res.Data.Sign.dwTodayStatus === 0) {
+      for (let sign of res.Data.Sign.SignList) {
+        if (sign.dwDayId === res.Data.Sign.dwTodayId) {
+          res = await api(
+            'story/RewardSign',
+            '_cfd_t,bizCode,ddwCoin,ddwMoney,dwEnv,dwPrizeLv,dwPrizeType,ptag,source,strPrizePool,strZone',
+            {
+              ddwCoin: sign.ddwCoin,
+              ddwMoney: sign.ddwMoney,
+              dwPrizeLv: sign.dwBingoLevel,
+              dwPrizeType: sign.dwPrizeType,
+              strPrizePool: sign.strPrizePool,
+            }
+          )
+          if (res.iRet === 0)
+            console.log(
+              '签到成功：',
+              res.Data.ddwCoin,
+              res.Data.ddwMoney,
+              res.Data.strPrizePool
+            )
+          break
+        }
       }
-      await wait(2000)
+    }
+
+    // 船来了
+    res = await api(
+      'user/QueryUserInfo',
+      '_cfd_t,bizCode,ddwTaskId,dwEnv,ptag,source,strShareId,strZone',
+      { ddwTaskId: '', strShareId: '', strMarkList: 'undefined' }
+    )
+    if (res.StoryInfo.StoryList) {
+      console.log(JSON.stringify(res))
+      if (res.StoryInfo.StoryList[0].Special) {
+        console.log(
+          `船来了，乘客是${res.StoryInfo.StoryList[0].Special.strName}`
+        )
+        let shipRes: any = await api(
+          'story/SpecialUserOper',
+          '_cfd_t,bizCode,ddwTriggerDay,dwEnv,dwType,ptag,source,strStoryId,strZone,triggerType',
+          {
+            strStoryId: res.StoryInfo.StoryList[0].strStoryId,
+            dwType: '2',
+            triggerType: 0,
+            ddwTriggerDay: res.StoryInfo.StoryList[0].ddwTriggerDay,
+          }
+        )
+        console.log(shipRes)
+        console.log('正在下船，等待30s')
+        await wait(30000)
+        shipRes = await api(
+          'story/SpecialUserOper',
+          '_cfd_t,bizCode,ddwTriggerDay,dwEnv,dwType,ptag,source,strStoryId,strZone,triggerType',
+          {
+            strStoryId: res.StoryInfo.StoryList[0].strStoryId,
+            dwType: '3',
+            triggerType: 0,
+            ddwTriggerDay: res.StoryInfo.StoryList[0].ddwTriggerDay,
+          }
+        )
+        if (shipRes.iRet === 0) console.log('船客接待成功')
+        else console.log('船客接待失败', shipRes)
+      }
+
+      if (res.StoryInfo.StoryList[0].Collector) {
+        console.log('收藏家出现')
+      }
     }
 
     // 清空背包
@@ -92,6 +170,16 @@ let UserName: string, index: number, isLogin: boolean, nickName: string
       )
       console.log('卖贝壳收入:', res.Data.ddwCoin, res.Data.ddwMoney)
     }
+
+    // 垃圾🚮
+    res = await api(
+      'story/QueryRubbishInfo',
+      '_cfd_t,bizCode,dwEnv,ptag,source,strZone'
+    )
+    if (res.Data.StoryInfo.StoryList.length !== 0) {
+      await api('story/RubbishOper', '')
+    }
+
     // 任务➡️
     let tasks: any
     tasks = await api(
@@ -131,8 +219,9 @@ let UserName: string, index: number, isLogin: boolean, nickName: string
               strBuildIndex: e.strBuildIndex,
             }
           )
-          console.log(employ)
-          await wait(3000)
+          if (employ.iRet === 0) console.log(`雇佣${e.strBuildIndex}导游成功`)
+          if (employ.iRet === 2003) break
+          await wait(1000)
         }
       }
     }
@@ -213,7 +302,7 @@ let UserName: string, index: number, isLogin: boolean, nickName: string
   for (let i = 0; i < cookiesArr.length; i++) {
     for (let j = 0; j < shareCodes.length; j++) {
       cookie = cookiesArr[i]
-      console.log('去助力:', shareCodes[j])
+      console.log(`账号${i + 1}去助力:`, shareCodes[j])
       res = await api(
         'story/helpbystage',
         '_cfd_t,bizCode,dwEnv,ptag,source,strShareId,strZone',
@@ -248,6 +337,11 @@ interface Params {
   dwSceneId?: string
   strTypeCnt?: string
   dwUserId?: number
+  ddwCoin?: number
+  ddwMoney?: number
+  dwPrizeLv?: number
+  dwPrizeType?: number
+  strPrizePool?: string
 }
 
 function api(fn: string, stk: string, params: Params = {}) {
@@ -307,22 +401,8 @@ function mainTask(fn: string, stk: string, params: Params = {}) {
 
 function makeShareCodes() {
   return new Promise<void>(async (resolve, reject) => {
-    let { data } = await axios.post(
-      'https://api.m.jd.com/client.action?functionId=initForFarm',
-      `body=${escape(
-        JSON.stringify({ version: 4 })
-      )}&appid=wh5&clientVersion=9.1.0`,
-      {
-        headers: {
-          cookie: cookie,
-          origin: 'https://home.m.jd.com',
-          referer: 'https://home.m.jd.com/myJd/newhome.action',
-          'User-Agent': USER_AGENT,
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      }
-    )
-    let farm: string = data.farmUserPro.shareCode
+    let bean: string = await getBeanShareCode(cookie)
+    let farm: string = await getFarmShareCode(cookie)
     res = await api(
       'user/QueryUserInfo',
       '_cfd_t,bizCode,ddwTaskId,dwEnv,ptag,source,strShareId,strZone',
@@ -334,14 +414,15 @@ function makeShareCodes() {
     pin = Md5.hashStr(pin)
     axios
       .get(
-        `https://api.sharecode.ga/api/jxcfd/insert?code=${res.strMyShareId}&farm=${farm}&pin=${pin}`
+        `https://api.sharecode.ga/api/autoInsert?db=jxcfd&code=${res.strMyShareId}&bean=${bean}&farm=${farm}&pin=${pin}`
       )
       .then((res) => {
         if (res.data.code === 200) console.log('已自动提交助力码')
-        else console.log('提交失败！已提交farm的cookie才可提交cfd')
+        else console.log('提交失败！已提交farm和bean的cookie才可提交cfd')
         resolve()
       })
       .catch((e) => {
+        console.log(e)
         reject('访问助力池出错')
       })
   })
@@ -349,7 +430,7 @@ function makeShareCodes() {
 
 async function requestAlgo() {
   fingerprint = await generateFp()
-  return new Promise(async (resolve) => {
+  return new Promise<void>(async (resolve) => {
     let { data } = await axios.post(
       'https://cactus.jd.com/request_algo?g_ty=ajax',
       {
@@ -379,6 +460,7 @@ async function requestAlgo() {
     )
     if (data['status'] === 200) {
       token = data.data.result.tk
+      console.log('token:', token)
       let enCryptMethodJDString = data.data.result.algo
       if (enCryptMethodJDString)
         enCryptMethodJD = new Function(`return ${enCryptMethodJDString}`)()
@@ -386,7 +468,7 @@ async function requestAlgo() {
       console.log(`fp: ${fingerprint}`)
       console.log('request_algo 签名参数API请求失败:')
     }
-    resolve(200)
+    resolve()
   })
 }
 
