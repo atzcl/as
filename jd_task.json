@@ -763,6 +763,36 @@
         "type": "runjs",
         "target": "blob/master/jd_cfd.ts"
       }
+    },
+    {
+      "name": "京喜财富岛_提现",
+      "type": "cron",
+      "time": "always",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_cfd_cashOut.ts"
+      }
+    },
+    {
+      "name": "京喜财富岛_热气球挂后台",
+      "type": "cron",
+      "time": "always",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_cfd_loop.ts"
+      }
+    },
+    {
+      "name": "伊利云养牛",
+      "type": "cron",
+      "time": "always",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_cfd_loop.ts"
+      }
     }
   ]
 }
