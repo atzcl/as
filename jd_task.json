@@ -6,6 +6,16 @@
   "surl": "",
   "list": [
     {
+      "name": "各类店铺签到",
+      "type": "cron",
+      "time": "0 0-23/6 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/main/jd_dpqd.js"
+      }
+    },
+    {
       "name": "京豆变动通知",
       "type": "cron",
       "time": "0 20 * * *",
