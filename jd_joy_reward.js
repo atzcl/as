@@ -642,7 +642,8 @@ let flag = true
       if (h >= 0 && h < 8) config = tasks.data['beanConfigs0']
       if (h >= 8 && h < 16) config = tasks.data['beanConfigs8']
       if (h >= 16 && h < 24) config = tasks.data['beanConfigs16']
-      for (let bean of config) {
+
+      for (let bean of config || []) {
         console.log(bean.id, bean.giftName, bean.leftStock)
         if (bean.giftValue === target) {
           await exchange(bean.id)

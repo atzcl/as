@@ -2,6 +2,10 @@ const { join } = require('path')
 const { existsSync } = require('fs')
 
 const tasks = require('./jd_task.json')
+const { run } = require('./utils/aRun')
+const { Env } = require('./utils/Env')
+
+global.Env = Env
 
 const apps = []
 
@@ -26,4 +30,4 @@ for (let i = 0; i < tasks.list.length; i += 1) {
   apps.push(RUN_FILE)
 }
 
-Promise.all(apps.map((f) => require(f)))
+Promise.all(apps.map((f) => run(f)))

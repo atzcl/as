@@ -992,6 +992,10 @@ function getFriends() {
           },
           async (err, resp, data) => {
             data = JSON.parse(data)
+
+            if (!data.datas) {
+              return
+            }
             for (let f of data.datas) {
               if (f.stealStatus === 'can_steal') {
                 console.log('可偷:', f.friendPin)
