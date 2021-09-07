@@ -1,11 +1,6 @@
 /*
- * @Author: lxk0301 https://gitee.com/lxk0301
- * @Date: 2020-11-01 16:25:41
- * @Last Modified by:   lxk0301
- * @Last Modified time: 2021-06-09 15:25:41
- */
-/*
-京东资产变动通知脚本：https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js
+京东资产变动通知脚本：jd_bean_change.js
+Modified time: 2021-06-9 15:25:41
 统计昨日京豆的变化情况，包括收入，支出，以及显示当前京豆数量,目前小问题:下单使用京豆后,退款重新购买,计算统计会出现异常
 统计红包以及过期红包
 网页查看地址 : https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean
@@ -14,19 +9,18 @@
 ============QuantumultX==============
 [task_local]
 #京东资产变动通知
-2 9 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js, tag=京东资产变动通知, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+2 9 * * * jd_bean_change.js, tag=京东资产变动通知, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ================Loon===============
 [Script]
-cron "2 9 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js, tag=京东资产变动通知
+cron "2 9 * * *" script-path=jd_bean_change.js, tag=京东资产变动通知
 =============Surge===========
 [Script]
-京东资产变动通知 = type=cron,cronexp="2 9 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js
+京东资产变动通知 = type=cron,cronexp="2 9 * * *",wake-system=1,timeout=3600,script-path=jd_bean_change.js
 ============小火箭=========
-京东资产变动通知 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js, cronexpr="2 9 * * *", timeout=3600, enable=true
+京东资产变动通知 = type=cron,script-path=jd_bean_change.js, cronexpr="2 9 * * *", timeout=3600, enable=true
  */
-
 const $ = new Env('京东资产变动通知')
-const notify = $.isNode() ? require('./sendNotify.js') : ''
+const notify = $.isNode() ? require('./sendNotify') : ''
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : ''
 let allMessage = ''
@@ -70,34 +64,15 @@ if ($.isNode()) {
       $.todayIncomeBean = 0
       $.errorMsg = ''
       $.isLogin = true
-      $.nickName = ''
+      $.nickName = $.UserName
       $.message = ''
       $.balance = 0
       $.expiredBalance = 0
-      await TotalBean()
       console.log(
         `\n********开始【京东账号${$.index}】${
           $.nickName || $.UserName
         }******\n`
       )
-      if (!$.isLogin) {
-        $.msg(
-          $.name,
-          `【提示】cookie已失效`,
-          `京东账号${$.index} ${
-            $.nickName || $.UserName
-          }\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`,
-          { 'open-url': 'https://bean.m.jd.com/bean/signIndex.action' }
-        )
-
-        if ($.isNode()) {
-          await notify.sendNotify(
-            `${$.name}cookie已失效 - ${$.UserName}`,
-            `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`
-          )
-        }
-        continue
-      }
       await bean()
       await showMsg()
     }
@@ -218,64 +193,6 @@ async function bean() {
   await redPacket() //过期红包
   // console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
   // console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
-}
-function TotalBean() {
-  return new Promise(async (resolve) => {
-    const options = {
-      url: 'https://me-api.jd.com/user_new/info/GetJDUserInfoUnion',
-      headers: {
-        Host: 'me-api.jd.com',
-        Accept: '*/*',
-        Connection: 'keep-alive',
-        Cookie: cookie,
-        'User-Agent': $.isNode()
-          ? process.env.JD_USER_AGENT
-            ? process.env.JD_USER_AGENT
-            : require('./USER_AGENTS').USER_AGENT
-          : $.getdata('JDUA')
-          ? $.getdata('JDUA')
-          : 'jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
-        'Accept-Language': 'zh-cn',
-        Referer: 'https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&',
-        'Accept-Encoding': 'gzip, deflate, br',
-      },
-    }
-    $.get(options, (err, resp, data) => {
-      try {
-        if (err) {
-          $.logErr(err)
-        } else {
-          if (data) {
-            data = JSON.parse(data)
-            if (data['retcode'] === '1001') {
-              $.isLogin = false //cookie过期
-              return
-            }
-            if (
-              data['retcode'] === '0' &&
-              data.data &&
-              data.data.hasOwnProperty('userInfo')
-            ) {
-              $.nickName = data.data.userInfo.baseInfo.nickname
-            }
-            if (
-              data['retcode'] === '0' &&
-              data.data &&
-              data.data['assetInfo']
-            ) {
-              $.beanCount = data.data && data.data['assetInfo']['beanNum']
-            }
-          } else {
-            $.log('京东服务器返回空数据')
-          }
-        }
-      } catch (e) {
-        $.logErr(e)
-      } finally {
-        resolve()
-      }
-    })
-  })
 }
 function getJingBeanBalanceDetail(page) {
   return new Promise(async (resolve) => {

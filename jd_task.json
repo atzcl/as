@@ -106,16 +106,6 @@
       }
     },
     {
-      "name": "京喜财富岛",
-      "type": "cron",
-      "time": "10 8,13,19,22 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_cfd.js"
-      }
-    },
-    {
       "name": "京喜财富岛提现",
       "type": "cron",
       "time": "0-5/1 0 0 * * *",
@@ -301,7 +291,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/main/jd_moneyTree.js"
+        "target": "/raw/main/jd_moneyTree.ts"
       }
     },
     {
@@ -745,6 +735,16 @@
       }
     },
     {
+      "name": "汪汪乐园养joy - JDHelloWorld",
+      "type": "cron",
+      "time": "20 7,9,17,20 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/jd_joy_park.ts"
+      }
+    },
+    {
       "name": "省钱大赢家之翻翻乐",
       "type": "cron",
       "time": "11 * * * *",
@@ -776,16 +776,6 @@
     },
     {
       "name": "京喜财富岛_热气球挂后台",
-      "type": "cron",
-      "time": "always",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "blob/master/jd_cfd_loop.ts"
-      }
-    },
-    {
-      "name": "伊利云养牛",
       "type": "cron",
       "time": "always",
       "running": true,
