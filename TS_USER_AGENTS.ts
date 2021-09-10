@@ -123,6 +123,14 @@ async function getFarmShareCode(cookie: string) {
     return ''
 }
 
+function h5st(url: string, stk: string, params: object) {
+  for (const [key, val] of Object.entries(params)) {
+    url += `&${key}=${val}`
+  }
+  url += '&h5st=' + decrypt(stk, url)
+  return url
+}
+
 function requireConfig() {
   let cookiesArr: string[] = []
   return new Promise(resolve => {
@@ -252,6 +260,7 @@ export {
   getRandomNumberByRange,
   jd_joy_invokeKey,
   requestAlgo,
+  h5st,
   decrypt,
   getJxToken
 }

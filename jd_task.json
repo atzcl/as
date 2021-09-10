@@ -665,13 +665,13 @@
       }
     },
     {
-      "name": "柠檬京喜牧场",
+      "name": "京喜牧场",
       "type": "cron",
       "time": "0 10 * * * *",
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/main/jd_jxmc.js"
+        "target": "/raw/main/jd_jxmc.ts"
       }
     },
     {
@@ -755,6 +755,16 @@
       }
     },
     {
+      "name": "财富大陆",
+      "type": "cron",
+      "time": "18 0-23/2 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "blob/master/gua_wealth_island.js"
+      }
+    },
+    {
       "name": "京喜财富岛",
       "type": "cron",
       "time": "1 * * * *",
@@ -762,26 +772,6 @@
       "job": {
         "type": "runjs",
         "target": "blob/master/jd_cfd.ts"
-      }
-    },
-    {
-      "name": "京喜财富岛_提现",
-      "type": "cron",
-      "time": "always",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "blob/master/jd_cfd_cashOut.ts"
-      }
-    },
-    {
-      "name": "京喜财富岛_热气球挂后台",
-      "type": "cron",
-      "time": "always",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "blob/master/jd_cfd_loop.ts"
       }
     }
   ]
