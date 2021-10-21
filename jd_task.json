@@ -665,6 +665,16 @@
       }
     },
     {
+      "name": "城城分现金",
+      "type": "cron",
+      "time": "0 0-23/1 * * * ",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/raw/main/jd_city.js"
+      }
+    },
+    {
       "name": "京喜牧场",
       "type": "cron",
       "time": "0 10 * * * *",
@@ -747,7 +757,7 @@
     {
       "name": "省钱大赢家之翻翻乐",
       "type": "cron",
-      "time": "11 * * * *",
+      "time": "15 0-23/2 * * *",
       "running": true,
       "job": {
         "type": "runjs",
@@ -767,7 +777,7 @@
     {
       "name": "京喜财富岛",
       "type": "cron",
-      "time": "1 * * * *",
+      "time": "18 0-23/1 * * *",
       "running": true,
       "job": {
         "type": "runjs",

@@ -123,11 +123,11 @@ async function getFarmShareCode(cookie: string) {
     return ''
 }
 
-function h5st(url: string, stk: string, params: object) {
+function h5st(url: string, stk: string, params: object, appId: number = 10032) {
   for (const [key, val] of Object.entries(params)) {
     url += `&${key}=${val}`
   }
-  url += '&h5st=' + decrypt(stk, url)
+  url += '&h5st=' + decrypt(stk, url, appId)
   return url
 }
 
@@ -209,7 +209,7 @@ function getQueryString(url: string, name: string) {
   return '';
 }
 
-function decrypt(stk: string, url: string) {
+function decrypt(stk: string, url: string, appId: number) {
   const timestamp = (format(new Date(), 'yyyyMMddhhmmssSSS'))
   let hash1: string;
   if (fingerprint && token && enCryptMethodJD) {
