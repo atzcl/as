@@ -7,7 +7,8 @@ const canRequest = (url) => {
       'cdn.jsdelivr.net',
       'lkyl.dianpusoft.cn',
       'raw.githubusercontent.com',
-      'draw.jdfcloud.com'
+      'draw.jdfcloud.com',
+      'lzdz1-isv.isvjd.com'
     ].includes(host) &&
     !/\.jd\.com$/.test(host) &&
     !/\.jingxi\.com/.test(host) &&

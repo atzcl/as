@@ -6,16 +6,6 @@
   "surl": "",
   "list": [
     {
-      "name": "各类店铺签到",
-      "type": "cron",
-      "time": "0 0-23/6 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/main/jd_dpqd.js"
-      }
-    },
-    {
       "name": "京豆变动通知",
       "type": "cron",
       "time": "0 20 * * *",
@@ -46,26 +36,6 @@
       }
     },
     {
-      "name": "东东超市兑换奖品",
-      "type": "cron",
-      "time": "0 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_blueCoin.js"
-      }
-    },
-    {
-      "name": "口袋书店",
-      "type": "cron",
-      "time": "2 8,12,18 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_bookshop.js"
-      }
-    },
-    {
       "name": "京东汽车",
       "type": "cron",
       "time": "15 7 * * *",
@@ -89,7 +59,7 @@
       "name": "签到领现金",
       "type": "cron",
       "time": "5 0,6-23/4 * * *",
-      "running": true,
+      "running": false,
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_cash.js"
@@ -106,16 +76,6 @@
       }
     },
     {
-      "name": "京喜财富岛提现",
-      "type": "cron",
-      "time": "0-5/1 0 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_cfdtx.js"
-      }
-    },
-    {
       "name": "摇京豆",
       "type": "cron",
       "time": "6 0 * * *",
@@ -123,26 +83,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_club_lottery.js"
-      }
-    },
-    {
-      "name": "疯狂的Joy",
-      "type": "cron",
-      "time": "6 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_crazy_joy.js"
-      }
-    },
-    {
-      "name": "天天提鹅",
-      "type": "cron",
-      "time": "15 0,7-23 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_daily_egg.js"
       }
     },
     {
@@ -208,80 +148,20 @@
     {
       "name": "京东宠汪汪",
       "type": "cron",
-      "time": "0 0-23/4 * * *",
+      "time": "0 0-23/3 * * *",
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/main/jd_joy.js"
-      }
-    },
-    {
-      "name": "京东宠汪汪喂食",
-      "type": "cron",
-      "time": "15 0,7-23 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_joy_feedPets.js"
-      }
-    },
-    {
-      "name": "宠汪汪积分兑换奖品",
-      "type": "cron",
-      "time": "0 0-16/8 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_joy_reward.js"
-      }
-    },
-    {
-      "name": "京喜农场",
-      "type": "cron",
-      "time": "10 9,12,18 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_jxnc.js"
-      }
-    },
-    {
-      "name": "京东快递签到",
-      "type": "cron",
-      "time": "25 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_kd.js"
+        "target": "/raw/main/jd_joy_new.ts"
       }
     },
     {
       "name": "京东直播",
       "type": "cron",
       "time": "10-20/5 12 * * *",
-      "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/main/jd_live.js"
-      }
-    },
-    {
-      "name": "超级直播间红包雨",
-      "type": "cron",
-      "time": "0,30,31 20-23/1 18 * *",
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_live_redrain.js"
-      }
-    },
-    {
-      "name": "京东抽奖机",
-      "type": "cron",
-      "time": "2 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_lotteryMachine.js"
+        "target": "/raw/main/jd_live.js.js"
       }
     },
     {
@@ -302,16 +182,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_ms.js"
-      }
-    },
-    {
-      "name": "点点券",
-      "type": "cron",
-      "time": "23 0,20 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_necklace.js"
       }
     },
     {
@@ -345,26 +215,6 @@
       }
     },
     {
-      "name": "京东排行榜",
-      "type": "cron",
-      "time": "6 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_rankingList.js"
-      }
-    },
-    {
-      "name": "京东全民开红包",
-      "type": "cron",
-      "time": "30,35 */3 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_redPacket.js"
-      }
-    },
-    {
       "name": "闪购盲盒",
       "type": "cron",
       "time": "25 8 * * *",
@@ -382,16 +232,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_shop.js"
-      }
-    },
-    {
-      "name": "东东小窝",
-      "type": "cron",
-      "time": "18 22 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_small_home.js"
       }
     },
     {
@@ -425,76 +265,6 @@
       }
     },
     {
-      "name": "赚京豆",
-      "type": "cron",
-      "time": "15 0,7,8-10/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_syj.js"
-      }
-    },
-    {
-      "name": "取关京东店铺商品",
-      "type": "cron",
-      "time": "30 23 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_unsubscribe.js"
-      }
-    },
-    {
-      "name": "京东粉丝互动",
-      "type": "cron",
-      "time": "30 8 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_z_fanslove.js"
-      }
-    },
-    {
-      "name": "健康社区",
-      "type": "cron",
-      "time": "30 10-22/3 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_z_health_community.js"
-      }
-    },
-    {
-      "name": "健康社区收取能量",
-      "type": "cron",
-      "time": "30 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_z_health_energy.js"
-      }
-    },
-    {
-      "name": "京小兑",
-      "type": "cron",
-      "time": "35 8 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_jxd.js"
-      }
-    },
-    {
-      "name": "interCenter渠道店铺签到",
-      "type": "cron",
-      "time": "0 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_monk_inter_shop_sign.js"
-      }
-    },
-    {
       "name": "女装盲盒",
       "type": "cron",
       "time": "20 9,23 * * *",
@@ -502,66 +272,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_nzmh.js"
-      }
-    },
-    {
-      "name": "店铺关注有礼",
-      "type": "cron",
-      "time": "10 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_monk_shop_follow_sku.js"
-      }
-    },
-    {
-      "name": "店铺大转盘",
-      "type": "cron",
-      "time": "1 8,20 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_monk_shop_lottery.js"
-      }
-    },
-    {
-      "name": "京东每日红包雨（由sngxpro代管随缘维护）",
-      "type": "cron",
-      "time": "1 8-23 * * 1-5",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "https://ghproxy.com/https://raw.githubusercontent.com/sngxpro2/jdliveredrain/main/lxk0301_live_redrain.js"
-      }
-    },
-    {
-      "name": "整点京豆雨",
-      "type": "cron",
-      "time": "1 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_super_redrain.js"
-      }
-    },
-    {
-      "name": "半点京豆雨",
-      "type": "cron",
-      "time": "30 20-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_half_redrain.js"
-      }
-    },
-    {
-      "name": "幸运大转盘",
-      "type": "cron",
-      "time": "20 10 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_market_lottery.js"
       }
     },
     {
@@ -595,16 +305,6 @@
       }
     },
     {
-      "name": "星店长",
-      "type": "cron",
-      "time": "26 7,21 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_star_shop.js"
-      }
-    },
-    {
       "name": "5G超级盲盒",
       "type": "cron",
       "time": "0 0,6-23/3 * * *",
@@ -612,36 +312,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_mohe.js"
-      }
-    },
-    {
-      "name": "京享值PK",
-      "type": "cron",
-      "time": "25 0,6-23/6 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_ddo_pk.js"
-      }
-    },
-    {
-      "name": "京东电竞经理",
-      "type": "cron",
-      "time": "40 10 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_djjl.js"
-      }
-    },
-    {
-      "name": "砍价",
-      "type": "cron",
-      "time": "12 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_kj.js"
       }
     },
     {
@@ -662,16 +332,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_wxj.js"
-      }
-    },
-    {
-      "name": "城城分现金",
-      "type": "cron",
-      "time": "0 0-23/1 * * * ",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_city.js"
       }
     },
     {
@@ -705,46 +365,6 @@
       }
     },
     {
-      "name": "京喜签到",
-      "type": "cron",
-      "time": "5 0 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "main/jd_jxsign.js"
-      }
-    },
-    {
-      "name": "零食街",
-      "type": "cron",
-      "time": "0 11 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_lsj.js"
-      }
-    },
-    {
-      "name": "柠檬众筹好物上新",
-      "type": "cron",
-      "time": "10 12,14 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "main/jd_hwsx.js"
-      }
-    },
-    {
-      "name": "汪汪乐园养joy",
-      "type": "cron",
-      "time": "20 0-23/3 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "blob/master/jd_joypark_joy.js"
-      }
-    },
-    {
       "name": "汪汪乐园养joy - JDHelloWorld",
       "type": "cron",
       "time": "20 7,9,17,20 * * *",
@@ -765,16 +385,6 @@
       }
     },
     {
-      "name": "财富大陆",
-      "type": "cron",
-      "time": "18 0-23/2 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "blob/master/gua_wealth_island.js"
-      }
-    },
-    {
       "name": "京喜财富岛",
       "type": "cron",
       "time": "18 0-23/1 * * *",
@@ -782,6 +392,36 @@
       "job": {
         "type": "runjs",
         "target": "blob/master/jd_cfd.ts"
+      }
+    },
+    {
+      "name": "领京豆-任务",
+      "type": "cron",
+      "time": "1 0,9,12,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "aa/jd_bean_box.ts"
+      }
+    },
+    {
+      "name": "东东世界",
+      "type": "cron",
+      "time": "5 0,8,20 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "aa/jd_ddWorld.ts"
+      }
+    },
+    {
+      "name": "极速版-发财大赢家",
+      "type": "cron",
+      "time": "1 0,8,18 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "aa/jd_speed_redEnvelope.ts"
       }
     }
   ]
