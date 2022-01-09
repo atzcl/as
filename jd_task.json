@@ -385,6 +385,26 @@
       }
     },
     {
+      "name": "城城领现金",
+      "type": "cron",
+      "time": "0 0-23/1 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "master/jd_city.js"
+      }
+    },
+    {
+      "name": "年货节签到",
+      "type": "cron",
+      "time": "0 8 1,2 * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "master/jd_nh_sign.js"
+      }
+    },
+    {
       "name": "京喜财富岛",
       "type": "cron",
       "time": "18 0-23/1 * * *",
@@ -402,16 +422,6 @@
       "job": {
         "type": "runjs",
         "target": "aa/jd_bean_box.ts"
-      }
-    },
-    {
-      "name": "东东世界",
-      "type": "cron",
-      "time": "5 0,8,20 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "aa/jd_ddWorld.ts"
       }
     },
     {
