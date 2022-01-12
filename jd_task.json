@@ -385,16 +385,6 @@
       }
     },
     {
-      "name": "城城领现金",
-      "type": "cron",
-      "time": "0 0-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "master/jd_city.js"
-      }
-    },
-    {
       "name": "年货节签到",
       "type": "cron",
       "time": "0 8 1,2 * *",
