@@ -385,6 +385,16 @@
       }
     },
     {
+      "name": "通天塔签到共建",
+      "type": "cron",
+      "time": "0 0,3 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "master/jd_babel_sign.js"
+      }
+    },
+    {
       "name": "年货节签到",
       "type": "cron",
       "time": "0 8 1,2 * *",
