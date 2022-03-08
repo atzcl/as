@@ -156,6 +156,26 @@
       }
     },
     {
+      "name": "闪购盲盒 - ts",
+      "type": "cron",
+      "time": "20 8 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/raw/main/jd_sgmh.ts"
+      }
+    },
+    {
+      "name": "农场自动收+种4级 - ts",
+      "type": "cron",
+      "time": "10 6-18/6 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/raw/main/jd_fruit_plant.ts"
+      }
+    },
+    {
       "name": "京东直播",
       "type": "cron",
       "time": "10-20/5 12 * * *",
@@ -172,16 +192,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_moneyTree.ts"
-      }
-    },
-    {
-      "name": "京东秒秒币",
-      "type": "cron",
-      "time": "12 7 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_ms.js"
       }
     },
     {
@@ -315,26 +325,6 @@
       }
     },
     {
-      "name": "柠檬推一推",
-      "type": "cron",
-      "time": "20 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_tyt.js"
-      }
-    },
-    {
-      "name": "挖现金",
-      "type": "cron",
-      "time": "20 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_wxj.js"
-      }
-    },
-    {
       "name": "京喜牧场",
       "type": "cron",
       "time": "10 0,12,18,20,22 * * *",
@@ -342,16 +332,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_jxmc.ts"
-      }
-    },
-    {
-      "name": "柠檬赚金币",
-      "type": "cron",
-      "time": "45 0,6-23/1 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_zjb.js"
       }
     },
     {
@@ -365,23 +345,23 @@
       }
     },
     {
-      "name": "汪汪乐园养joy - JDHelloWorld",
+      "name": "逛PLUS抽京豆",
       "type": "cron",
-      "time": "20 7,9,17,20 * * *",
+      "time": "52 8 * * *",
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "blob/master/jd_joy_park.ts"
+        "target": "/raw/main/jd_plusReward.js"
       }
     },
     {
-      "name": "省钱大赢家之翻翻乐",
+      "name": "柠檬我是大老板农场",
       "type": "cron",
-      "time": "15 0-23/2 * * *",
+      "time": "6 0-23/6 * * *",
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "blob/master/jd_big_winner.js"
+        "target": "/raw/main/jd_wsdlb.js"
       }
     },
     {
@@ -392,16 +372,6 @@
       "job": {
         "type": "runjs",
         "target": "master/jd_babel_sign.js"
-      }
-    },
-    {
-      "name": "年货节签到",
-      "type": "cron",
-      "time": "0 8 1,2 * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "master/jd_nh_sign.js"
       }
     },
     {
@@ -422,16 +392,6 @@
       "job": {
         "type": "runjs",
         "target": "aa/jd_bean_box.ts"
-      }
-    },
-    {
-      "name": "极速版-发财大赢家",
-      "type": "cron",
-      "time": "1 0,8,18 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "aa/jd_speed_redEnvelope.ts"
       }
     }
   ]
