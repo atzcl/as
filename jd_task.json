@@ -335,6 +335,16 @@
       }
     },
     {
+      "name": "极速版赛跑",
+      "type": "cron",
+      "time": "16 * * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/raw/jd_joy_park_run.ts"
+      }
+    },
+    {
       "name": "京东试用",
       "type": "cron",
       "time": "40 8 * * *",
