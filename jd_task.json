@@ -98,11 +98,21 @@
     {
       "name": "东东农场",
       "type": "cron",
-      "time": "10 6-18/6 * * *",
+      "time": "16 6-18/6 * * *",
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/main/jd_fruit.js"
+        "target": "/raw/fruit.ts"
+      }
+    },
+    {
+      "name": "京东-东东农场-助力",
+      "type": "cron",
+      "time": "35 0,3,5 * * *",
+      "running": true,
+      "job": {
+        "type": "runjs",
+        "target": "/raw/jd_fruit_help.ts"
       }
     },
     {
@@ -312,16 +322,6 @@
       "job": {
         "type": "runjs",
         "target": "/raw/main/jd_jxlhb.js"
-      }
-    },
-    {
-      "name": "5G超级盲盒",
-      "type": "cron",
-      "time": "0 0,6-23/3 * * *",
-      "running": true,
-      "job": {
-        "type": "runjs",
-        "target": "/raw/main/jd_mohe.js"
       }
     },
     {
