@@ -102,7 +102,7 @@
       "running": true,
       "job": {
         "type": "runjs",
-        "target": "/raw/fruit.ts"
+        "target": "/raw/fruit.js"
       }
     },
     {
